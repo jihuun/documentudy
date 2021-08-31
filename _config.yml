@@ -8,7 +8,7 @@
 # Site settings
 title: Documentudy
 brief-intro: UNIX & Linux Kernel
-baseurl: "" # the subpath of your site, e.g. /blog
+baseurl: "/documentudy" # the subpath of your site, e.g. /blog
 url: "https://soopsaram.com/documentudy" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
