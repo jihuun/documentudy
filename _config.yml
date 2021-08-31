@@ -9,7 +9,7 @@
 title: Documentudy
 brief-intro: UNIX & Linux Kernel
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://soopsaram.com/documentudy" # the base hostname & protocol for your site
+url: "http://soopsaram.com/" # the base hostname & protocol for your site
 
 permalink: /:year/:month/:day/:title/
 
