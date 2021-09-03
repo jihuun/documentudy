@@ -10,24 +10,23 @@ author: soopsaram
 * content
 {:toc}
 
-## 요약
+# 개요 
 bash 쉘에서 본인이 작성한 스크립트나 프로그램 명령에 argument를 입력할때 TAB으로 자동완성 시켜주는 기능 만들어보자
 
-## 목표 
-- cdd 전달인자인 경로 자동완성
+# 목표 
+- cdd 전달인자인 경로 자동완성기능 추가하기
 cdd는 `cd ../../../../` 를 입력하는 대신 `cdd 4`로 손쉽게 뒤로이동 하는 내가 만든 명령도구다.
 [cdd 바로가기](https://github.com/scriptworld/cdd)
 - `cdd 3` + `TAB` ->  ../../../ 경로의 디렉터리 이름 출력 및 prefix로 디렉터리 자동완성
-- ~~`cd -` 원래 디렉터리로 복귀~~
 
-## 기초
-bash completion 을 만들때, 기본적으로 이 두가지 외부 툴이 함께 사용된다. `complete` `compgen`
+# 기초
+bash completion 을 만들때, 기본적으로 이 두가지 외부 툴(명령)이 함께 사용된다. `complete` `compgen`
 그리고 내부 변수 `COMPREPLY`, `COMP_CWORD`,  `COMP_WORDS` 를 활용한다. 
 이들을 잘 조합한 bash스크립트로 자동완성 기능을 만들 수 있다.
 > 강추 문서 https://mug896.github.io/bash-shell/command_completion.html
 
 
-## complete 명령 사용법
+# complete 명령 사용법
 
 `complete -F <함수> <명령>` : 쉘에서<명령> 작성 후 한칸 띄고 `TAB`치면 <함수> 호출됨. 엔터가 아니라 탭을 쳤을때 사용되는 추가 명령(?) 이라고 보면 될것같음.  
 
@@ -77,7 +76,7 @@ $ complete -o nospace -W 'aaa= bbb= ccc='  hello
 $ hello aaa=[stop]
 ```
 
-## COMP_CWORD 와 COMP_WORDS로  인자 다루기
+# COMP_CWORD 와 COMP_WORDS로  인자 다루기
 `int main(int argc, char *argv[])` 의 인자와 동일한 역할  
 > `$COMP_CWORD` -> `int argc`  argument 갯수
 > `$COMP_WORDS` -> `char *argv[]`  모든 argument 문자열 리스트
@@ -108,7 +107,10 @@ argument words2 :
 ```
 > `cdd 3 ` space를 치고 `TAB`을 친 경우임. 만약 `cdd 3` 뒤에 space를 치지 않고 `TAB`을 치면 argument count : 1 이 된다. 
 
-## COMPREPLY 전역변수 사용하기
+
+
+# COMPREPLY 전역변수 사용하기
+
 `TAB`을 쳤을때 COMPREPLY에 저장된 문자열로 대체된다. 우리가 최종에 값을 저장해야할 변수. bash_completion의 내장 변수.  
 
 ```sh
@@ -142,7 +144,7 @@ argument words1 : 3
 
 
 
-## compgen 사용하기
+# compgen 사용하기
 
 ```sh
 compgen -W '단어1 단어2 ... 단어N' -- "<Prefix>"
@@ -165,12 +167,23 @@ complate/
 > compgen을 find와 조합해서 디렉터리에 존재하는 경로명을 추출할 수 있다.
 
 
+# 최종 완성
+
+```bash
+_cdd() {
+	[[ ${COMP_CWORD} -eq 1 ]] || return 0
+	[[ -z ${COMP_WORDS[1]} ]] && COMPREPLY="$(__cdd_prev_path 1)"
+	[[ ${COMP_WORDS[1]} =~ ^[0-9]+$ ]] \
+		&& COMPREPLY="$(__cdd_prev_path ${COMP_WORDS[1]})"
+}
+complete -o dirnames -o nospace -F _cdd cdd
+```
 
 ---
 
-## 참고
-- https://z-wony.tistory.com/3 [끄적끄적 프로그래밍]
-- https://www.tuwlab.com/ece/29643
-- https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html
+# References
+- [끄적끄적 프로그래밍](https://z-wony.tistory.com/3)
+- [https://www.tuwlab.com/ece/29643](https://www.tuwlab.com/ece/29643)
+- [https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html](https://www.gnu.org/software/bash/manual/html_node/Programmable-Completion-Builtins.html)
 - complete 명령 안내(KOR)
-  - https://mug896.github.io/bash-shell/command_completion.html
+  - [https://mug896.github.io/bash-shell/command_completion.html](https://mug896.github.io/bash-shell/command_completion.html)

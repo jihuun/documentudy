@@ -27,7 +27,7 @@ stream에는 standard stream이 있는데 이것도 결국 file 에 대한 strea
 vi나 nano같은 에디터로 파일을 열면 에디터 프로그램은 해당 파일의 스트림을 생성하고 읽고 쓴다. 
 
 
-references
+- references
 > [stackoverflow: what-does-stream-mean-in-c](https://stackoverflow.com/questions/38652953/what-does-stream-mean-in-c)
 > [youtube: 스트림 (널널한 교수의 기초 C언어) ft. C 코딩](https://youtu.be/iuEdJ9wg8wU)
 
@@ -40,13 +40,11 @@ references
 - Standard stream 은 Unix C runtime environment 에서 환경을 제공한다.
 Since Unix provided standard streams, the __Unix C runtime environment__ was obliged to support it as well. As a result, most C runtime environments (and C's descendants), regardless of the operating system, provide equivalent functionality.
 
-> https://stackoverflow.com/questions/38652953/what-does-stream-mean-in-c
-> https://blogger.pe.kr/369
+- references
+> [https://stackoverflow.com/questions/38652953/what-does-stream-mean-in-c](https://stackoverflow.com/questions/38652953/what-does-stream-mean-in-c)
+> [https://blogger.pe.kr/369](https://blogger.pe.kr/369)
 
 ## 2.2. Shell I/O Redirect 와 PIPE 의 차이
-
-> https://thoughtbot.com/blog/input-output-redirection-in-the-shell 
-> https://github.com/kennyyu/bootcamp-unix/wiki/stdin,-stdout,-stderr,-and-pipes
 
 일반적으로 UNIX shell은 stdout으로 전달된 것을 console로 출력해준다. 그런데 shell 에서 `>` 를 사용하면 stdout을 console이 아닌 파일에 출력할 수 있다(stdout to the file). 가령 아래와 같이 ` echo "a b c d"`의 stdout 이 console로 출력되지 않고 tmp.txt 파일로 출력된다. 즉 tmp.txt 파일에 써진다. 
 
@@ -82,7 +80,11 @@ a b c d
 | --- | --- | 
 | `>` file | stdout을 console 이 아닌 file에 출력  |
 | `<` file | keyboard가 아닌 file로 부터 stdin 입력  |
-| cmd1 pipe cmd2 |  한 프로그램(cmd1)의 stdout출력을 다음 프로그램(cmd2)의 stdin 으로 사용  |
+| cmd1 `|` cmd2 |  한 프로그램(cmd1)의 stdout출력을 다음 프로그램(cmd2)의 stdin 으로 사용  |
+
+- references
+> [https://thoughtbot.com/blog/input-output-redirection-in-the-shell](https://thoughtbot.com/blog/input-output-redirection-in-the-shell)
+> [https://github.com/kennyyu/bootcamp-unix/wiki/stdin,-stdout,-stderr,-and-pipes](https://github.com/kennyyu/bootcamp-unix/wiki/stdin,-stdout,-stderr,-and-pipes)
 
 
 ## 2.3.  `2>&1` 이해하기
