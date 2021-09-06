@@ -18,7 +18,7 @@
         padding: 20px 30px;
         line-height: 1.6;
         font-size: 16px;
-        background-color: #f8f8fd;
+        background-color: #f8f8fd; // the box color
         //box-shadow: 0 1px 2px rgba(0,0,0,0.4),0 0 30px rgba(10,10,0,0.1) inset;
         >h1 {
             margin-bottom: -10px;
@@ -56,7 +56,8 @@
                     }
                     a {
                         padding: 0 5px;
-                        background-color: #9e9d9d;
+                        //background-color: #9e9d9d;
+                        background-color: #76f013;
                         color: #fff;
                         font-size: 90%;
                         transition: 0.3s ease;
@@ -73,8 +74,8 @@
 
                         // border: 1px solid #aaa;
                         padding: 0 5px;
-                        background-color: #c6cbe9;
-                        border-radius: 4px;
+                        background-color: #76f013;
+                        //border-radius: 4px;
                         color: #fff;
                         font-size: 90%;
                         transition: 0.3s ease;
