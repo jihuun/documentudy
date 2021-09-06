@@ -1,7 +1,9 @@
 header {
     background: #222;
     height: 52px;
-    color: #9d9d9d;
+    //color: #9d9d9d;
+    //color: #e963fe;
+    color: #fff;
     //box-shadow: 0 2px 4px 1px rgba(0,0,0,0.5);
     margin-bottom: 20px;
     a {
@@ -10,7 +12,8 @@ header {
         -webkit-transition: 0.2s ease;
         transition: 0.2s ease;
         &:hover {
-            color: #fff;
+            //color: #fff;
+            color: #e963fe;
         }
     }
     .wrapper {
@@ -18,7 +21,8 @@ header {
         margin: 0 auto;
         line-height: 52px;
         .brand {
-            font-size: 18px;
+            //font-size: 18px;
+            font-size: 25px;
         }
         small {
             margin-left: 26px;
@@ -51,7 +55,9 @@ header {
                         }
                     }
                     >.active {
-                        color: #fff;
+                        //color: #fff;
+                        color: #e963fe;
+
                         background-color: #000;
                         //box-shadow: 0 25px 25px -15px rgba(255,255,255,0.93);
                     }

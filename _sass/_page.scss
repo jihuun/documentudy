@@ -58,11 +58,13 @@
                         padding: 0 5px;
                         //background-color: #9e9d9d;
                         background-color: #76f013;
-                        color: #fff;
+                        //color: #fff;
+                        color: #e963fe;
                         font-size: 90%;
                         transition: 0.3s ease;
                         &:hover {
-                            background-color: #b6b6b9;
+                            color: #76f013;
+                            background-color: #e963fe;
                         }
                     }
                 }
@@ -76,11 +78,13 @@
                         padding: 0 5px;
                         background-color: #76f013;
                         //border-radius: 4px;
-                        color: #fff;
+                        //color: #fff;
+                        color: #e963fe;
                         font-size: 90%;
                         transition: 0.3s ease;
                         &:hover {
-                            background-color: #c0ddc7;
+                            color: #76f013;
+                            background-color: #e963fe;
                         }
                     }
                 }
@@ -102,6 +106,7 @@
         .scroll-bottom {
             position: absolute;
             bottom: 190px;
+
         }
         .side {
             box-sizing: border-box;
@@ -128,7 +133,7 @@
                 color: #4d6dad;
                 transition: 0.5s ease;
                 &:hover {
-                    color: #223253;
+                    color: #e963fe;
                 }
             }
         }

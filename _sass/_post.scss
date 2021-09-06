@@ -14,7 +14,8 @@
             }
             i {
                 padding-right: 5px;
-                color: #6b6a6a;
+                //color: #6b6a6a;
+                color: #fff;
             }
         }
     }
@@ -22,8 +23,10 @@
         color: #4d6dad;
         transition: 0.5s ease;
         &:hover {
-            color: #223253;
-            background-color: #f4efeb;
+            //color: #223253;
+            //background-color: #f4efeb;
+            color: #e963fe;
+            background-color: #76f013;
         }
     }
     .left {
