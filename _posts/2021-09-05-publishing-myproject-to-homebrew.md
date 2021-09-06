@@ -3,7 +3,7 @@ layout: post
 title:  "Publishing my project to Homebrew"
 date:   2021-09-05 21:00:00 +0800
 categories: UNIX
-tags: UNIX Shell Python
+tags: UNIX Shell Package_Magager
 author: soopsaram
 ---
 
@@ -29,8 +29,8 @@ homebrew 공식 릴리즈에 포함되지 않더라도 등록할 수 있는 방�
 
 ## 2.1.  내 프로젝트 바이너리 생성 및 release
 
-- **`rsdic.tar.gz` 생성**  
-조금 뒤에 살펴볼 homebrew `Formula`에서 *.tar.gz 로 압축된 바이너리를 필요로한다. 바이너리를 빌드한뒤에 *.tar.gz로 압축 하면된다. Rust에서는 `cargo build --release` 하면 쉽게 릴리즈 바이너리를 빌드할 수 있다.  
+- **`*.tar.gz` 압축파일 생성**  
+조금 뒤에 살펴볼 homebrew `Formula`에서 *.tar.gz 로 압축된 바이너리를 필요로한다. 우선 프로젝트를 빌드하여 실행파일을 생성한 뒤에 *.tar.gz로 압축 하면된다. Rust에서는 `cargo build --release` 하면 쉽게 릴리즈 바이너리를 빌드할 수 있다.  
 
 	```sh
 	cargo build --release
@@ -55,7 +55,7 @@ https://github.com/jihuun/rsdic/releases/download/v0.1.0/rsdic.tar.gz
 
 
 - **`homebrew-rsdic` Github repo 생성**   
-Github repository를 하나 생성한다. 저장소 이름은 homebrew-<projectname> 와 같은 방식으로 해야한다. 이유는 [Homebrew 네이밍 컨벤션](https://docs.brew.sh/Taps#repository-naming-conventions-and-assumptions) 참고.
+Github repository를 하나 생성한다. 저장소 이름은 `homebrew-<projectname>` 와 같은 방식으로 해야한다. 자세한 이유는 [Homebrew 네이밍 컨벤션](https://docs.brew.sh/Taps#repository-naming-conventions-and-assumptions) 참고.  
 
 - **`Formula` 작성**   
 Formula는 Ruby 파일인데 딱히 Ruby지식을 필요로 하지는 않는다(나도 모름). 생성한 repository는 아래와 같은 디렉터리 구조를 필요로 한다.  
