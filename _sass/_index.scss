@@ -1,7 +1,7 @@
 .page[index] {
     a {
         color: #4d6dad;
-        transition: 0.5s ease;
+        transition: 0.3s ease;
         &:hover {
             color: #e963fe;
             background-color: #76f013;
@@ -57,7 +57,7 @@
                         color: #e963fe;
                         font-size: 90%;
                         background-color: #76f013;
-                        transition: 0.2s ease;
+                        transition: 0.3s ease;
                         &:hover {
                             color: #76f013;
                             background-color: #e963fe;
@@ -107,7 +107,9 @@
                             &:hover {
                                 background-color: #dbdfee;
                                 .badge {
-                                    background-color: #dbdfee;
+                                    //background-color: #dbdfee;
+                                    color: #76f013;
+                                    background-color: #e963fe;
                                     transform: scale(1.2) rotate(360deg);
                                 }
                             }
@@ -124,9 +126,11 @@
                                 margin-top: 3px;
                                 padding: 0 10px;
                                 font-size: 12px;
-                                color: #fff;
-                                background-color: #bbb;
-                                border-radius: 50%;
+                                //color: #fff;
+                                color: #e963fe;
+                                //background-color: #bbb;
+                                background-color: #76f013;
+                                //border-radius: 50%;
                                 transition: 0.5s ease-in-out;
                             }
                         }
@@ -146,9 +150,12 @@
                     font-weight: normal;
                     a {
                         padding: 0 3px;
-                        border-radius: 5px;
+                        //border-radius: 5px;
                         &:hover {
-                            background-color: #f0e7ce;
+                            color: #e963fe;
+                            background-color: #76f013;
+                            padding: 0 10px;
+                            //background-color: #f0e7ce;
                         }
                     }
                 }
