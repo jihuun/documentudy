@@ -11,11 +11,6 @@ brief-intro: UNIX & Linux Kernel
 baseurl: "/documentudy" # the subpath of your site, e.g. /blog
 url: "https://soopsaram.com/documentudy" # the base hostname & protocol for your site
 
-plugins:
-  - jekyll-feed
-description: uNIX & Linux Kernel
-author: Soopsaram
-
 permalink: /:year/:month/:day/:title/
 
 # other links
