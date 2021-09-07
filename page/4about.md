@@ -5,12 +5,6 @@ permalink: /about/
 icon: heart
 ---
 
-* content
-{:toc}
 
-## 숲사람
-soopsaram.com
-
-## Comments
-
-{% include comments.html %}
+![image]({{site.baseurl}}/assets/img/about_eif.png)
+**YES**
