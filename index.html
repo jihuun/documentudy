@@ -3,9 +3,11 @@ layout: default
 ---
 
 <div class="page clearfix" index>
+    <div class="image-container">
+        <img class="scale" data-scale="best-fit-down" data-align="center" src="assets/img/main_eif.png">
+    </div>
+    <br>
     <div class="left">
-        <h1>Documentudy</h1>
-        <small>What I've learned</small>
         <hr>
         <ul>
             {% for post in paginator.posts %}
