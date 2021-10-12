@@ -11,7 +11,7 @@ author: soopsaram
 {:toc}
 
 
-```
+```sh
 if [ condition ]; then
     cmd
 fi
@@ -37,7 +37,7 @@ fi
 
 cmd1이 정상적인 exit status를 리턴한다고 했을때, 이전 명령의 성공/실패 여부에따라 cmd2를 수행해보자. 먼저 if/else를 사용한다면 다음과 같이 못생겨진다.
 
-```
+```sh
 cmd1
 if [ $? -eq 0 ]; then
     cmd2
@@ -48,19 +48,19 @@ fi
 
 -  cmd1 성공시에만 cmd2 실행
 
-```
+```sh
 cmd1 && cmd2
 ```
 
 -  cmd1 실패시에만 cmd2 실행
 
-```
+```sh
 cmd1 || cmd2
 ```
 
 만약 cmd1이 성공했을때 cmd2를 실행하고, 실패할때 cmd3를 실행하고자 한다면 아래와 같이 한줄로 처리 가능하다.
 
-```
+```sh
 cmd1 && cmd2 || cmd3
 ```
 
@@ -75,14 +75,14 @@ cmd1 && cmd2 || cmd3
 
 
 
-```
+```sh
 if [ "aa" == "aa" ]
 then 
     echo 'yes'
 fi
 ```
 
-```
+```sh
 if test "aa" == "aa"
 then 
     echo 'yes'
@@ -99,25 +99,25 @@ fi
 
 - condition이 true일때만 cmd 수행
 
-```
+```sh
 [ condition ] && cmd
 ```
 
 - condition이 false 일때만 cmd가 수행.
 
-```
+```sh
 [ condition ] || cmd
 ```
 
 - condition에 따라 if/else 처리
 
-```
+```sh
 [ condition ] && cmd1 || cmd2
 ```
 condition이 true이면 cmd1 false이면 cmd2가 수행된다. 아래와 동일한 동작이다. 
 
 
-```
+```sh
 if [ condition ]
 then
     cmd1
@@ -130,7 +130,7 @@ fi
 
 한가지 주의할 점은 shell에서는 무조건 왼쪽에서 오른쪽으로 순차적으로 명령과 연산자를 수행한다는 점이다. c언어처엄 논리 연산자 우선순위에 따라 명령을 처리하지 않는다. 가령 `[ condition ] && cmd1 && cmd2 || cmd3` 은 먼저 `[ condition ]` 명령이 성공하면 `cmd1`명령을 실행하고 `cmd1`이 성공하면 `cmd2`가 실행된다. 그리고 만약 `cmd1`이 실패하면 `cmd2`는 실행되지 않고 `cmd3`이 실행된다.
 
-```
+```sh
 #! /bin/bash
 
 [ condition ] && cmd1
@@ -143,7 +143,7 @@ echo "hello"
 
 먼저 `set -e` 처리를 하면 exit 1이 발생하지 않는다. 참고로 set -e 는 POSIX 표준이다. 
 
-```
+```sh
 #! /bin/bash
 
 set -e
@@ -153,7 +153,7 @@ echo "hello"
 
 두번째로는 `|| true` 로 false 인 경우도 추가하여 아무동작도 수행하지 않는것이다. 
 
-```
+```sh
 #! /bin/bash
 
 [ condition ] && cmd1 || true
@@ -166,7 +166,7 @@ echo "hello"
 
 # If Statement의 작동원리
 
-```
+```sh
 if
    cmd1
 then
@@ -182,9 +182,10 @@ fi
 
 # References
 
-[https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html](https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html)  
-[https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Lists](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Lists)  
-[https://stackoverflow.com/questions/4419952/difference-between-return-and-exit-in-bash-functions](https://stackoverflow.com/questions/4419952/difference-between-return-and-exit-in-bash-functions)  
-[https://unix.stackexchange.com/questions/609092/what-is-the-difference-between-square-brackets-and-test-command-on-bash](https://unix.stackexchange.com/questions/609092/what-is-the-difference-between-square-brackets-and-test-command-on-bash)  
-[YouTube: Never say "If" writing a Bash script!](https://youtu.be/p0KKBmfiVl0)  
-[https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs](https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs)  
+- [https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html](https://www.gnu.org/software/bash/manual/html_node/Conditional-Constructs.html)  
+- [https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Lists](https://www.gnu.org/savannah-checkouts/gnu/bash/manual/bash.html#Lists)  
+- [https://stackoverflow.com/questions/4419952/difference-between-return-and-exit-in-bash-functions](https://stackoverflow.com/questions/4419952/difference-between-return-and-exit-in-bash-functions)  
+- [https://unix.stackexchange.com/questions/609092/what-is-the-difference-between-square-brackets-and-test-command-on-bash](https://unix.stackexchange.com/questions/609092/what-is-the-difference-between-square-brackets-and-test-command-on-bash)  
+- [YouTube: Never say "If" writing a Bash script!](https://youtu.be/p0KKBmfiVl0)  
+- [https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs](https://unix.stackexchange.com/questions/306111/what-is-the-difference-between-the-bash-operators-vs-vs-vs)  
+
