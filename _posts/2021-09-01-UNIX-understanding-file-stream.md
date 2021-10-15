@@ -12,7 +12,7 @@ author: soopsaram
 
 # 1. What is Stream
 
-UNIX에서는 모든것이 file이다. 그래서 UNIX 에서 strem에 대한 이해가 중요하다. Stream을 사용하는것은 UNIX 응용프로그램에서 파일을 읽고 쓰기 위한 일반적인 방법이기 때문이다.
+UNIX에서는 모든것이 file이다. Stream을 사용하는것은 UNIX 응용프로그램에서 파일을 읽고 쓰기 위한 일반적인 방법이기 때문에 UNIX 에서 Stream에 대한 이해하는것은 중요하다. 
 
 ## 1.1. Stream 과 File
 

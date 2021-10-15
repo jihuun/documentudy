@@ -210,12 +210,13 @@ aclocal.m4  autom4te.cache  compile  configure  configure.ac  COPYING  depcomp  
 
 
 
-# 생성한 프로젝트 빌드해보기
+# 생성한 프로젝트 빌드 및 설치 해보기
  이제 아래의 UNIX 빌드 명령으로 프로젝트 빌드를 해보자. configure 실행하여 Makefile을 생성하고 make를통해 빌드해보자.
 
 ```sh
  $ ./configure
  $ make
+ $ make install
 ```
 
 ```sh
@@ -287,7 +288,15 @@ gcc  -g -O2   -o helloworld helloworld.o
 hello, world!
 ```
 
-참고로 최종 생성된 파일은 다음과 같다. 무지 많다.
+이제 `make install` 하면 현재 환경변수에 실행파일이 등록되어, 어느 위치에서든 helloworld 프로그램을 실행 시킬수 있다.  
+
+```
+ $ make install
+ $ helloworld
+hello, world!
+```
+
+참고로 최종 생성된 파일은 다음과 같다. 오지게 많다.
 
 ```
  $ ls
@@ -306,12 +315,12 @@ aclocal.m4  autom4te.cache  compile  config.log  config.status  configure  confi
  $ aclocal # m4 환경 생성
  $ autoconf # configure.ac 파일로 부터 configure 스크립트 생성
  $ automake --add-missing # Makefile.am 로부터 Makefile.in 생성
- $ ./configure # Makefile.in로부터 Makefile생성
  $ make dist # 배포용 tarball생성
  $ make distcheck # 배포용 tarball 테스트
 ```
 
 - 사용자 관점 빌드
+해당 프로젝트 소스코드를 다운받고 본인의 환경에 설치하는 사람들은 다음의 절차를 수행할 것이다.  
 
 ```
  $ ./configure # Makefile.in로부터 Makefile생성
@@ -321,11 +330,11 @@ aclocal.m4  autom4te.cache  compile  config.log  config.status  configure  confi
 
 
 # References
-- https://en.wikipedia.org/wiki/GNU_Autotools
-- https://www.gnu.org/software/autoconf/manual/autoconf-2.66/autoconf.html
-- https://www.gnu.org/software/automake/manual/automake.html#Public-Macros
-- https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install
-- https://www.geeksforgeeks.org/autoreconf-command-in-linux-with-examples/amp/
-- https://youtu.be/4q_inV9M_us
-- https://earthly.dev/blog/autoconf/
-- https://stackoverflow.com/questions/27285052/difference-between-autoconf-and-autoreconf#:~:text=1%20Answer&text=autoconf%20generates%20the%20configure%20script,like%20aclocal%20%2C%20automake%20%2C%20etc.&text=You'll%20usually%20just%20call,lower%20level%20tools%20
+- [https://en.wikipedia.org/wiki/GNU_Autotools](https://en.wikipedia.org/wiki/GNU_Autotools)
+- [https://www.gnu.org/software/autoconf/manual/autoconf-2.66/autoconf.html](https://www.gnu.org/software/autoconf/manual/autoconf-2.66/autoconf.html)
+- [https://www.gnu.org/software/automake/manual/automake.html#Public-Macros](https://www.gnu.org/software/automake/manual/automake.html#Public-Macros)
+- [https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install](https://thoughtbot.com/blog/the-magic-behind-configure-make-make-install)
+- [https://www.geeksforgeeks.org/autoreconf-command-in-linux-with-examples/amp/](https://www.geeksforgeeks.org/autoreconf-command-in-linux-with-examples/amp/)
+- [https://youtu.be/4q_inV9M_us](https://youtu.be/4q_inV9M_us)
+- [https://earthly.dev/blog/autoconf/](https://earthly.dev/blog/autoconf/)
+- [https://stackoverflow.com/questions/27285052/difference-between-autoconf-and-autoreconf#:~:text=1%20Answer&text=autoconf%20generates%20the%20configure%20script,like%20aclocal%20%2C%20automake%20%2C%20etc.&text=You'll%20usually%20just%20call,lower%20level%20tools%20](https://stackoverflow.com/questions/27285052/difference-between-autoconf-and-autoreconf#:~:text=1%20Answer&text=autoconf%20generates%20the%20configure%20script,like%20aclocal%20%2C%20automake%20%2C%20etc.&text=You'll%20usually%20just%20call,lower%20level%20tools%20)
