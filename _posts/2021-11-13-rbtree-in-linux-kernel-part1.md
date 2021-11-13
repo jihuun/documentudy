@@ -2,13 +2,12 @@
 layout: post
 title:  "Red-Black Tree in Linux Kernel - Part 1"
 date:   2021-11-14 21:00:00 +0800
-categories: LinuxKernel
+categories: Linux Kernel
 tags: Linux LinuxKernel Algorithm
 author: soopsaram
 ---
 
 > 작성: 숲사람
-> 
 
 * content
 {:toc}
@@ -23,15 +22,14 @@ RB-Tree 는 Radix-Tree와 더불어 Linux Kernel에서 가장 많이 사용하�
   
   
 # RB tree의 5가지 규칙  
-노드의 모든 삽입과 삭제 연산시 아래의 규칙을 만족시키도록 트리의 노드위치를 변경하고 유지하는것이 RB Tree이다.  
+노드의 삽입과 삭제연산을 할때마다, 아래의 규칙을 만족시키도록 트리의 노드위치를 변경하거나 유지하는것이 RB Tree이다.  
   
-1) A node is either red or black  
-2) The root is black  
-3) All leaves (NULL) are black  
-4) Both children of every red node are black  
-> 레드 노드는 중첩될 수 없다.  
-5) Every simple path from root to leaves contains the same number of black nodes.  
-> Black Height가 같다.  
+1. 노드는 빨간색 검은색 둘 중 하나다(A node is either red or black)  
+2. Root 노드는 검은색이다. (The root is black)  
+3. 모든 말단 노드는 검은색이다 (All leaves (NULL) are black)  
+4. 빨간색 노드는 중첩될 수 없다. (Both children of every red node are black)  
+5. 각 말단노드의 Black Height는 모두 동일하다 (Every simple path from root to leaves contains the same number of black nodes)  
+> Black Height: 말단노드에서부터 Root노드 사이의 검은색 노드 갯수  
   
   
 # 삽입 연산  
