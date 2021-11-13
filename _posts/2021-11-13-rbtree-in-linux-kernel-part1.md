@@ -39,7 +39,7 @@ RB-Tree 는 Radix-Tree와 더불어 Linux Kernel에서 가장 많이 사용하�
   
 새노드가 트리에 삽입될때, 부모노드는 검은색인경우 빨간색인 경우 두가지가 있다. 아래 설명된 각각의 경우의 수에따라 5가지 종류의 삽입연산이 필요하다.  일부 삽입연산은 트리의 회전연산이 필요하다(rotation_left() 및 rotation_right()). 회전연산은 매개변수로 전달된 노드의 자식을 치켜세워주는 연산이라고 생각하면 이해하기 쉽다 : 자식이 위로 부모는 아래로.   
   
-```txt  
+```
 새노드 삽입 insert_case1() 수행  
   
 -검은색에 삽입 -> 문제가 되지 않음   
@@ -146,14 +146,13 @@ insert_case5(n)
     
 아래 그림 참고.      
       
-![rbtree inorder predecessor](/assets/img/rbtree_inorder_predecessor.png)
+![rbtree inorder predecessor]({{site.baseurl}}/assets/img/rbtree_inorder_predecessor.png)
     
 ## 후계자 노드 처리    
     
 후계 노드가 삭제되는 것으로 판단하면 된다. 후계 노드가 빨간색일 경우와 검은색일 경우에 따른 케이스로 구분하면 된다. 아래 형제,부모,조카는 대체될 후계 노드 기준으로 위치한 노드임.  (실제로는 대체될 후계노드의 자식노드기준으로 볼 수도 있는데. 그이유는 대체될 노드는 삭제노드 위치로 변경되고 대체될 노드의 자리에는 어차피 그 노드의 자식노드가 위치할 것이기 때문이다.)    
     
-```txt    
-
+```
 - 후계노드가 빨간색 -> 문제 없음    
 - 후계노드가 검은색     
 	- 형제가 빨간색인 경우 delete_case2(n)    
