@@ -2,7 +2,7 @@
 layout: post
 title:  "Red-Black Tree in Linux Kernel - Part 1"
 date:   2021-11-14 21:00:00 +0800
-categories: Linux Kernel
+categories: LinuxKernel
 tags: Linux LinuxKernel Algorithm
 author: soopsaram
 ---
@@ -15,7 +15,7 @@ author: soopsaram
 
 # Red-Black Tree 란?
 
-RB-Tree 는 Radix-Tree와 더불어 Linux Kernel에서 가장 많이 사용하는 Tree 자료구조이다. I/O scheduler(CFQ, deadline 등), ext filesystem, Virtual memory areas 등 Kernel의 여러 Subsystem에서 사용된다. 기존 Tree자료구조의 단점은 최악의 경우 노드가 Linked-List의 형태로 저장되어 탐색 시간복잡도가 O(n) 이 된다는 점이다. 하지만 RB Tree는 노드의 삽입과 삭제가 이루어 질때, Tree가 자동으로 회전하며 O(logN)의 시간복잡도를 보장한다.
+RB-Tree 는 Radix-Tree와 더불어 Linux Kernel에서 가장 많이 사용하는 Tree 자료구조이다. I/O scheduler(CFQ, deadline 등), ext filesystem, Virtual memory areas 등 Kernel의 여러 Subsystem에서 사용된다. 기존 Tree자료구조의 단점은 최악의 경우 노드가 Linked-List의 형태로 저장되어 탐색 시간복잡도가 O(N) 이 된다는 점이다. 하지만 RB Tree는 노드의 삽입과 삭제가 이루어 질때, Tree가 자동으로 회전하며 O(logN)의 시간복잡도를 보장한다.
 
 이 글에서는 일반적인 RB Tree에서 가장 복잡한 연산인 삽입과 삭제가 어떤 방식으로 동작 하는지 알아본다. 경우의 수만 잘 따지고 그때그때 어떻게 해주는지 규칙만 잘 파악하면 쉽게 따라갈 수 있다. 이를 기반으로 해서 다음 글에서 Linux Kernel 에서 RB Tree가 어떻게 구현되었는지 살펴 볼것이다.
   
