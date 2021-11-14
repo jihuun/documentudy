@@ -9,23 +9,18 @@ author: soopsaram
 
 > 작성: 숲사람
 
-* content
-{:toc}
 
-[지난 포스트](http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 Red Black Tree의 일반적인 동작 방식을 이해~~하려고 시도~~해 보았다. 이번 포스트에서는 Linux Kernel에서 RB Tree가 어떻게 구현되었는지 살펴볼 것이다. 최신 리눅스 커널 버전은 v5.15 이지만, 이 문서를 쓰던 당시 커널버전은 v4.6 이었기 때문에 소스코드 분석은 v4.6버전 기준으로 하였다.    
+[지난 포스트](http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 Red Black Tree의 일반적인 동작 방식을 이해~~하려고 시도~~해 보았다. 이번 포스트에서는 Linux Kernel에서 RB Tree가 어떻게 구현되었는지 살펴볼 것이다. 최신 리눅스 커널 버전은 v5.15 이지만, 이 문서를 쓰던 당시 커널버전은 v4.6 이었기 때문에 소스코드 분석은 v4.6버전 기준으로 하였다. 참고한 소스코드는 문서 하단 References 참고.   
 
 Kernel source에는 lib/rbtree_test.c 파일이 있다. Kernel에서 RB tree를 어떻게 사용하는지 친절하게 예를 들어주는 파일이다. 이를 통해 RB tree 사용법, 그리고 lib/rbtree.c 파일을 분석함으로써, Kernel에서 RB tree의 Insert / Erase 동작은 어떻게 구현되었는지 파악 해볼 것이다.   
 
 아래 소스코드를 보면 `|` `+` `""` 등이 함께 표현되어있는데, 이는 중요도가 낮은 코드는 제거, 불필요한 공백과 indent 를 처리하고, 다른 파일에 위치한 코드를 쉽게 따라가기 위해 내가 만든 코드 분석 방법이다(추후 설명페이지 공유예정).  
 
   
-  
-> 목차  
+* content
 {:toc}
 
-  
-  
------  
+---  
   
   
   
@@ -776,7 +771,7 @@ void rb_erase(struct rb_node *node, struct rb_root *root)
 - [https://kldp.org/node/117200](https://kldp.org/node/117200)  
 - [http://gcc.gnu.org/onlinedocs/gcc-4.6.1/gcc/Type-Attributes.html#Type-Attributes](http://gcc.gnu.org/onlinedocs/gcc-4.6.1/gcc/Type-Attributes.html#Type-Attributes)  
   
-- Source Code 
+- Source Code (Linux Kernel v4.6)    
 [lib/rbtree.c](https://github.com/torvalds/linux/blob/v4.6/lib/rbtree.c)  
 [lib/rbtree_test.c](https://github.com/torvalds/linux/blob/v4.6/lib/rbtree_test.c)  
 [include/linux/rbtree.h](https://github.com/torvalds/linux/blob/v4.6/include/linux/rbtree.h)  
