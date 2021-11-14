@@ -11,24 +11,27 @@ author: soopsaram
 {:toc}
 
 # 개요 
-bash 쉘에서 본인이 작성한 스크립트나 프로그램 명령에 argument를 입력할때 TAB으로 자동완성 시켜주는 기능 만들어보자
+bash 쉘에서 본인이 작성한 스크립트나 프로그램 명령에 argument를 입력할때, TAB으로 자동완성 시켜주는 기능을 만들어보자
 
 # 목표 
-- cdd 전달인자인 경로 자동완성기능 추가하기
-cdd는 `cd ../../../../` 를 입력하는 대신 `cdd 4`로 손쉽게 뒤로이동 하는 내가 만든 명령도구다.
-[cdd 바로가기](https://github.com/scriptworld/cdd)
-- `cdd 3` + `TAB` ->  ../../../ 경로의 디렉터리 이름 출력 및 prefix로 디렉터리 자동완성
+
+- cdd 전달인자인 경로 자동완성기능 추가하기  
+cdd는 `cd ../../../../` 를 입력하는 대신 `cdd 4`로 손쉽게 뒤로이동 하는 내가 만든 명령도구다.  
+[cdd 바로가기: https://github.com/scriptworld/cdd](https://github.com/scriptworld/cdd)
+
+- `cdd 3` + `TAB` 을 쳤을때
+../../../ 경로의 디렉터리 이름 출력 및 prefix로 디렉터리 자동완성
 
 # 기초
-bash completion 을 만들때, 기본적으로 이 두가지 외부 툴(명령)이 함께 사용된다. `complete` `compgen`
-그리고 내부 변수 `COMPREPLY`, `COMP_CWORD`,  `COMP_WORDS` 를 활용한다. 
-이들을 잘 조합한 bash스크립트로 자동완성 기능을 만들 수 있다.
-> 강추 문서 https://mug896.github.io/bash-shell/command_completion.html
+bash completion 을 만들때, 기본적으로 이 두가지 외부 툴(명령)이 함께 사용된다. `complete` `compgen`  
+그리고 내부 변수 `COMPREPLY`, `COMP_CWORD`,  `COMP_WORDS` 를 활용한다. 이들을 잘 조합한 bash스크립트로 자동완성 기능을 만들 수 있다.
+> 강추 문서 https://mug896.github.io/bash-shell/command_completion.html  
 
+---
 
 # complete 명령 사용법
 
-`complete -F <함수> <명령>` : 쉘에서<명령> 작성 후 한칸 띄고 `TAB`치면 <함수> 호출됨. 엔터가 아니라 탭을 쳤을때 사용되는 추가 명령(?) 이라고 보면 될것같음.  
+`complete -F <함수> <명령>` : 쉘에서<명령> 작성 후 한칸 띄고 `TAB`치면 <함수> 호출된다. 엔터가 아니라 탭을 쳤을때 사용되는 추가 명령 이라고 보면 될것같다.  
 
 - cdd/completion/bash_cdd 생성
 
@@ -49,7 +52,7 @@ complete -F _cdd cdd
  $ ln -s ~/project/cdd/completions/bash_cdd /usr/local/etc/bash_completion.d/cdd
  $ source /usr/local/etc/bash_completion.d/cdd
 ```
-- 그 뒤 `cdd 3` + `TAB`하면 작성한 _cdd 함수가 동작하는것을 알 수 있음. 따라서 앞으로 _cdd() 함수에 원하는 동작을 작성하면 됨.  
+- 그 뒤 `cdd 3` + `TAB`하면 작성한 _cdd 함수가 동작하는것을 알 수 있다. 따라서 앞으로 _cdd() 함수에 원하는 동작을 작성하면 된다.  
 
 ```
 $ cdd 3 auto completion test
@@ -66,15 +69,25 @@ $ hello [TAB]
 aa/ bb/ cc/
 ```
 
+- `-W ` 옵션
+자동완성 되기 원하는 옵션이나 문구등을 지정할 수 있다. 띄어쓰기로 구분되고 출력은 자동정렬되어 나온다.  
+
+```
+$ complete -W '-a -b -c' hello
+$ hello [TAB]
+-a -b -c
+```
+
 - `-o nospace` 옵션
-이름을 자동완성하고 나면 다음 이름을 위해 공백을 띄우게 되는데, 이 옵션은 그걸 방지.
+이름을 자동완성하고 나면 다음 이름을 위해 공백을 띄우게 되는데, 이 옵션은 그걸 방지.  
+가령 아래 예시에서 `hello a`까지 입력하고 TAB을 치면 `hello aaa=`가 자동완성 되고 커서가 마지막 `=` 바로뒤에 멈춘다.  
 
 ```
-$ complete -o nospace -W 'aaa= bbb= ccc='  hello
-
-# 이름을 완성하고 나서 공백을 띄우지 않는다.
-$ hello aaa=[stop]
+$ complete -o nospace -W 'aaa= bbb= ccc=' hello
+$ hello aaa=
 ```
+
+---
 
 # COMP_CWORD 와 COMP_WORDS로  인자 다루기
 `int main(int argc, char *argv[])` 의 인자와 동일한 역할  
@@ -108,6 +121,7 @@ argument words2 :
 > `cdd 3 ` space를 치고 `TAB`을 친 경우임. 만약 `cdd 3` 뒤에 space를 치지 않고 `TAB`을 치면 argument count : 1 이 된다. 
 
 
+---
 
 # COMPREPLY 전역변수 사용하기
 
@@ -178,6 +192,8 @@ _cdd() {
 }
 complete -o dirnames -o nospace -F _cdd cdd
 ```
+
+[cdd 바로가기: https://github.com/scriptworld/cdd](https://github.com/scriptworld/cdd)
 
 ---
 
