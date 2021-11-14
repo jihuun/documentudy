@@ -12,7 +12,7 @@ author: soopsaram
 * content
 {:toc}
 
-[지난 포스트](http://http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 Red Black Tree의 일반적인 동작 방식을 이해~~하려고 시도~~해 보았다. 이번 포스트에서는 Linux Kernel에서 RB Tree가 어떻게 구현되었는지 살펴볼 것이다. 최신 리눅스 커널 버전은 v5.15 이지만, 이 문서를 쓰던 당시 커널버전은 v4.6 이었기 때문에 소스코드 분석은 v4.6버전 기준으로 하였다.    
+[지난 포스트](http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 Red Black Tree의 일반적인 동작 방식을 이해~~하려고 시도~~해 보았다. 이번 포스트에서는 Linux Kernel에서 RB Tree가 어떻게 구현되었는지 살펴볼 것이다. 최신 리눅스 커널 버전은 v5.15 이지만, 이 문서를 쓰던 당시 커널버전은 v4.6 이었기 때문에 소스코드 분석은 v4.6버전 기준으로 하였다.    
 
 Kernel source에는 lib/rbtree_test.c 파일이 있다. Kernel에서 RB tree를 어떻게 사용하는지 친절하게 예를 들어주는 파일이다. 이를 통해 RB tree 사용법, 그리고 lib/rbtree.c 파일을 분석함으로써, Kernel에서 RB tree의 Insert / Erase 동작은 어떻게 구현되었는지 파악 해볼 것이다.   
 
@@ -50,7 +50,7 @@ struct rb_node {
 } __attribute__((aligned(sizeof(long))));  
 ```  
   
-- 실제 rb tree규칙으로 balancing 되는 노드의 구조체.  
+- 실제 rb tree규칙으로 트리의 균형이 맞는지 rebalence 되는 노드의 구조체.  
   
 - `__attribute__((aligned(sizeof(long))));` 의미는?  
 구조체의 시작 주소 정렬   
@@ -292,10 +292,9 @@ parent의 자식노드에 new연결 (기존에 old가 parent의 어느쪽 자식
 ## `__rb_insert()` 분석  
   
 RB tree에서 삽입하는 동작은 아래와 같이 세가지 형태 변화가 있다. 이전 포스트의 case 3/4/5와 동일한 동작. 아래 그림에서 소문자 노드는 빨간색, 대문자 노드는 검정색을 표현했다.  
-`FIXME` 참고로 실제 소스코드에서 case가 1,2,3으로 되어있으나, 여기서 case가 3,4,5 로 표기한 이유는, 이해의 편의를 위해 [지난 포스트](http://http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 정의한 case와 동일하게 맞추기 위함이다.  
+`FIXME` 참고로 실제 소스코드에서 case가 1,2,3으로 되어있으나, 여기서 case가 3,4,5 로 표기한 이유는, 이해의 편의를 위해 [지난 포스트](http://soopsaram.com/documentudy/2021/11/14/rbtree-in-linux-kernel-part1)에서 정의한 case와 동일하게 맞추기 위함이다.  
   
-```txt  
-  
+```
 Case 3 - color flips  
   
       G            g  
@@ -303,7 +302,6 @@ Case 3 - color flips
     p   u  -->   P   U  
    /            /  
   n            n  
-  
   
 Case 4 - left rotate at parent  
   
@@ -313,7 +311,6 @@ Case 4 - left rotate at parent
     \           /  
      n         p  
   
-  
 Case 5 - right rotate at gparent  
   
        G           P  
@@ -321,7 +318,6 @@ Case 5 - right rotate at gparent
      p   U  -->  n   g  
     /                 \  
    n                   U  
-  
 ```  
 
 
